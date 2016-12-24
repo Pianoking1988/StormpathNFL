@@ -9,30 +9,33 @@
 	<packaging>jar</packaging>
 
 	<name>stormpath-nfl</name>
-	<description>Demo project for Spring Boot</description>
+	<description>TryOut project for stormpath within a thymeleaf spring-boot webapp</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.4.3.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<stormpath.starter.version>1.2.3</stormpath.starter.version>
+		<junit.version>4.12</junit.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<groupId>com.stormpath.spring</groupId>
+			<artifactId>stormpath-default-spring-boot-starter</artifactId>
+			<version>${stormpath.starter.version}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

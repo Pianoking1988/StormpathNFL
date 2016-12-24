@@ -1,0 +1,7 @@
+stormpath:
+    spring:
+        security:
+            enabled: false
+security:
+    basic:
+        enabled: false
