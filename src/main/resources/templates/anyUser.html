@@ -14,22 +14,21 @@
 ~ limitations under the License.
 */-->
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <!--/*/ <th:block th:include="fragments/head :: head"/> /*/-->
-</head>
-<body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="box col-md-6 col-md-offset-3">
-            <div class="stormpath-header">
-                <img src="https://stormpath.com/images/template/logo-nav.png"/>
+    <head>
+        <!--/*/ <th:block th:include="fragments/head :: head"/> /*/-->
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="box col-md-6 col-md-offset-3">
+                    <div class="stormpath-header">
+                        <img src="https://stormpath.com/images/template/logo-nav.png"/>
+                    </div>
+
+					<h1>This page is visible to any user who is logged in</h1>
+		            <a href="/" class="btn btn-primary">Go Home</a>
+                </div>
             </div>
-
-            <h1 th:inline="text">Hello, [[${account.givenName}]]! You're allowed to see this page !</h1>
-            <a href="/" class="btn btn-primary">Go Home</a>
-
         </div>
-    </div>
-</div>
-</body>
+    </body>
 </html>

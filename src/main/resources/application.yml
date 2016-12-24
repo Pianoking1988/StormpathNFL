@@ -1,7 +1,7 @@
 stormpath:
     spring:
         security:
-            enabled: false
+            enabled: true
 security:
     basic:
-        enabled: false
+        enabled: true
