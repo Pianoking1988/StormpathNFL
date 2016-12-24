@@ -4,4 +4,17 @@ stormpath:
             enabled: true
 security:
     basic:
-        enabled: true
+        enabled: true        
+spring:
+    datasource:
+        driver-class-name: ${JDBC_DATABASE_DRIVER:org.h2.Driver}
+        url: ${JDBC_DATABASE_URL:jdbc:h2:mem:mydb}
+        user: ${JDBC_DATABASE_USERNAME:sa}
+        password: ${JDBC_DATABASE_PASSWORD:}
+        type: com.zaxxer.hikari.HikariDataSource
+        hikari:
+            minimum-idle: 1
+            maximum-pool-size: 2
+            pool-name: hikariPool
+    jpa:
+        generate-ddl: false

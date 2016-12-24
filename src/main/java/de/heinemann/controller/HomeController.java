@@ -1,7 +1,11 @@
 package de.heinemann.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -10,20 +14,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.stormpath.sdk.servlet.account.AccountResolver;
 
+import de.heinemann.domain.Team;
+import de.heinemann.repository.TeamRepository;
 import de.heinemann.service.HelloService;
+import de.heinemann.service.TeamService;
 
 @Controller
-public class HelloController {
+public class HomeController {
 
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
-	public HelloService helloService;
+	private TeamService teamService;
+	
+	@Autowired
+	private TeamRepository teamRepository;	
 	
     @RequestMapping("/")
-    public String home(HttpServletRequest req, Model model) {
-        model.addAttribute("status", req.getParameter("status"));
+    public String home(HttpServletRequest request, Model model) {
+    	/* Team team = new Team();
+    	team.setName("TestTeam");
+    	teamRepository.save(team); */
+    	
+    	List<Team> teams = teamService.findAll();
+    	logger.info("Find {} teams", teams.size());
+        model.addAttribute("teams", teams);
         return "home";
     }
 
+    @Autowired
+    public HelloService helloService;
+    
     @RequestMapping("/restricted")
     @PreAuthorize("hasPermission('reload', 'nfl')")
     public String restricted(HttpServletRequest req, Model model) {
