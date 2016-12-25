@@ -1,0 +1,33 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Stormpath NFL</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="#">Page xy</a></li>
+      </ul>
+
+      <div th:if="${account}">
+	    <form th:action="@{/logout}" method="post" class="navbar-form navbar-right">
+          <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+        <p class="navbar-text navbar-right hidden-xs" th:text="'Hello, ' + ${account.fullName}">Some text</p>
+      </div>
+		
+      <div th:unless="${account}">
+        <ul class="nav navbar-nav navbar-right">
+          <li th:unless="${account}"><a href="/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+          <li th:unless="${account}"><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

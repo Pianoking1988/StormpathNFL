@@ -20,5 +20,7 @@ spring:
         generate-ddl: false
         hibernate:
             ddl-auto: none
+    thymeleaf:
+        cache: ${THYMELEAF_CACHING:false}
 flyway:
     locations: db/migration/common,db/migration/hsqldb
