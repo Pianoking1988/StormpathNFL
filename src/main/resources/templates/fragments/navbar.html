@@ -1,33 +1,53 @@
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">Stormpath NFL</a>
-    </div>
-    
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Home</a></li>
-        <li><a href="#">Page xy</a></li>
-      </ul>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600italic,600,700italic,700,800italic,800" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>  
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
-      <div th:if="${account}">
-	    <form th:action="@{/logout}" method="post" class="navbar-form navbar-right">
-          <button type="submit" class="btn btn-danger">Logout</button>
-        </form>
-        <p class="navbar-text navbar-right hidden-xs" th:text="'Hello, ' + ${account.fullName}">Some text</p>
-      </div>
-		
-      <div th:unless="${account}">
-        <ul class="nav navbar-nav navbar-right">
-          <li th:unless="${account}"><a href="/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-          <li th:unless="${account}"><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</nav>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body th:fragment="navbar (activeLink)">  
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/">Stormpath NFL</a>
+	    </div>
+	    
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav">
+	        <li th:class="${activeLink} == ''           ? active : ''"><a href="/">Home</a></li>
+	        <li th:class="${activeLink} == 'restricted' ? active : ''"><a href="/restricted">Restricted</a></li>
+	        <li th:class="${activeLink} == 'anyUser' ? active : ''"><a href="/anyUser">Any User</a></li>
+	      </ul>
+	
+	      <div th:if="${account}">
+		    <form th:action="@{/logout}" method="post" class="navbar-form navbar-right">
+	          <button type="submit" class="btn btn-danger">Logout</button>
+	        </form>
+	        <p class="navbar-text navbar-right hidden-xs" th:text="'Hello, ' + ${account.fullName}">Some text</p>
+	      </div>
+			
+	      <div th:unless="${account}">
+	        <ul class="nav navbar-nav navbar-right">
+	          <li th:unless="${account}"><a href="/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+	          <li th:unless="${account}"><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </div>
+	</nav>
+  </body>
+</html>

@@ -3,26 +3,11 @@
         <!--/*/ <th:block th:include="fragments/head :: head"/> /*/-->
     </head>
     <body>
-        <!--/*/ <th:block th:include="fragments/navbar"/> /*/-->
+        <!--/*/ <th:block th:include="fragments/navbar :: navbar (activeLink='')"/> /*/-->
     
         <div class="container-fluid">
             <div class="row">
                 <div class="box col-xs-12">
-
-                    <div th:if="${account}">
-                        <h1 th:inline="text">Hello, [[${account.givenName}]]!</h1>
-                        <form th:action="@{/logout}" method="post">
-                            <a href="/restricted" class="btn btn-primary">Restricted</a>
-                        	<a href="/anyUser" class="btn btn-primary">Any User</a>
-                            <input type="submit" class="btn btn-danger" value="Logout"/>
-                        </form>
-                    </div>
-                    
-                    <div th:unless="${account}">
-                        <h1>Who are you?</h1>
-                        <a href="/restricted" class="btn btn-primary">Restricted</a>
-                       	<a href="/anyUser" class="btn btn-primary">Any User</a>
-                    </div>
                     
                     <div class="table-responsive">          
 						<table class="table">
