@@ -3,7 +3,7 @@ INSERT INTO team (name, conference, division) VALUES
 ('Miami Dolphins', 'AFC', 'East'),
 ('Buffalo Bills', 'AFC', 'East'),
 ('New York Jets', 'AFC', 'East'),
-('Pittsburg Steelers', 'AFC', 'North'),
+('Pittsburgh Steelers', 'AFC', 'North'),
 ('Baltimore Ravens', 'AFC', 'North'),
 ('Cincinnati Bengals', 'AFC', 'North'),
 ('Cleveland Browns', 'AFC', 'North'),

@@ -30,18 +30,45 @@
 						  <thead>
 						    <tr>
 						      <th>#</th>
+						      <th>Home</th>
+						      <th>Logo</th>
+						      <th>Score</th>
+						      <th>Logo</th>
+						      <th>Road</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr th:each="match : ${matches.matches}">
+						      <td th:text="${match.id}">1</td>
+						      <td th:text="${match.homeTeam.name}">Green Bay Packers</td>
+						      <td><img th:src="@{'images/' + ${match.homeTeam.name} + '.png'}" src="../static/images/Green Bay Packers.png" width="30" height="30"/></td>
+						      <td th:text="${match.finished} ? ${match.homeScore} + ':' + ${match.roadScore} + (${match.overtime} ? ' n.V.' : '') : ''">0:0</td>
+						      <td><img th:src="@{'images/' + ${match.roadTeam.name} + '.png'}" src="../static/images/Seattle Seahawks.png" width="30" height="30"/></td>
+						      <td th:text="${match.roadTeam.name}">Seattle Seahawks</td>
+						    </tr>
+						  </tbody>
+						</table>
+					</div>
+                    
+                    <div class="table-responsive">          
+						<table class="table">
+						  <thead>
+						    <tr>
+						      <th>#</th>
+						      <th>Logo</th>
 						      <th>Name</th>
 						    </tr>
 						  </thead>
 						  <tbody>
 						    <tr th:each="team : ${teams}">
 						      <td th:text="${team.id}">1</td>
+						      <td><img th:src="@{'images/' + ${team.name} + '.png'}" src="../static/images/Green Bay Packers.png" width="30" height="30"/></td>
 						      <td th:text="${team.name}">Green Bay Packers</td>
 						    </tr>
 						  </tbody>
 						</table>
 					</div>                
-
+                
                 </div>
             </div>
         </div>
