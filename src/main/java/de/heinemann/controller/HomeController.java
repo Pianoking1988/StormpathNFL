@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.stormpath.sdk.servlet.account.AccountResolver;
 
 import de.heinemann.domain.Team;
-import de.heinemann.repository.TeamRepository;
 import de.heinemann.service.HelloService;
 import de.heinemann.service.TeamService;
 
@@ -26,16 +25,9 @@ public class HomeController {
 	
 	@Autowired
 	private TeamService teamService;
-	
-	@Autowired
-	private TeamRepository teamRepository;	
-	
+		
     @RequestMapping("/")
     public String home(HttpServletRequest request, Model model) {
-    	/* Team team = new Team();
-    	team.setName("TestTeam");
-    	teamRepository.save(team); */
-    	
     	List<Team> teams = teamService.findAll();
     	logger.info("Find {} teams", teams.size());
         model.addAttribute("teams", teams);
