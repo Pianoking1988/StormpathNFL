@@ -14,18 +14,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
-  <body th:fragment="teamList (teams)">  
+  <body th:fragment="matchList (matches)">  
 
     <div class="table-responsive">          
-	  <table class="table">
-		<tbody>
-		  <tr th:each="team : ${teams.teams}">
-		    <td><img th:src="@{'images/' + ${team.name} + '.png'}" src="../static/images/Green Bay Packers.png" width="30" height="30"/></td>
-  	        <td><a th:href="'/teams/' + ${team.id}" th:text="${team.name}">Green Bay Packers</a></td>		  
-		  </tr>
-		</tbody>
-	  </table>
-	</div>                
+		<table class="table">
+		  <tbody>
+		    <tr th:each="match : ${matches.matches}">
+		      <td th:text="${match.week}">1</td>
+		      <td><a th:href="'/teams/' + ${match.homeTeam.id}" th:text="${match.homeTeam.name}">Green Bay Packers</a></td>
+		      <td><img th:src="@{'~/images/' + ${match.homeTeam.name} + '.png'}" src="../static/images/Green Bay Packers.png" width="30" height="30"/></td>
+		      <td th:text="${match.finished} ? ${match.homeScore} + ':' + ${match.roadScore} + (${match.overtime} ? ' n.V.' : '') : ''">0:0</td>
+		      <td><img th:src="@{'~/images/' + ${match.roadTeam.name} + '.png'}" src="../static/images/Seattle Seahawks.png" width="30" height="30"/></td>
+		      <td><a th:href="'/teams/' + ${match.roadTeam.id}" th:text="${match.roadTeam.name}">Seattle Seahawks</a></td>
+		    </tr>
+		  </tbody>
+		</table>
+	</div>
 
   </body>
 </html>

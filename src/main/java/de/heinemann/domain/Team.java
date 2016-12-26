@@ -60,5 +60,27 @@ public class Team {
 	public void setDivision(Division division) {
 		this.division = division;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object)
+			return true;
+		if (object == null)
+			return false;
+		if (getClass() != object.getClass())
+			return false;
+		Team other = (Team) object;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
 }

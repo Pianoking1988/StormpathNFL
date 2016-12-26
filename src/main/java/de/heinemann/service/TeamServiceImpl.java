@@ -3,6 +3,7 @@ package de.heinemann.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import de.heinemann.domain.Team;
 import de.heinemann.domain.Teams;
 import de.heinemann.repository.TeamRepository;
 
@@ -14,6 +15,10 @@ public class TeamServiceImpl implements TeamService {
 	
 	public Teams findAll() {
 		return new Teams(teamRepository.findAll());
+	}
+	
+	public Team find(long teamId) {
+		return teamRepository.findOne(teamId);
 	}
 	
 }

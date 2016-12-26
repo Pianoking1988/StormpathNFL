@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!--/*/ <th:block th:include="fragments/head :: head"/> /*/-->
+    </head>
+    <body>
+        <!--/*/ <th:block th:include="fragments/navbar :: navbar (activeLink='')"/> /*/-->
+    
+        <div class="container-fluid">
+
+			<h1 th:text="${team.name}">Green Bay Packers</h1>
+			
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2>Schedule</h2>             
+	        	    <!--/*/ <th:block th:include="fragments/matchList :: matchList (matches=${matches})"/> /*/-->
+				</div>
+			</div>
+			
+            <div class="row">
+                <div class="col-xs-12" th:with="record = ${matches.getRecordFor(team)}">
+                	<h2>Record</h2>             
+					<p th:text="${record.wins} + ' - ' + ${record.losses} + ' - ' + ${record.ties}"></p>
+					<p th:text="${record.getWinPercentage()}"></p>
+				</div>
+			</div>
+            
+        </div>
+    </body>
+</html>

@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "match")
@@ -23,6 +24,35 @@ public class Match {
 	private int roadScore;
 	private boolean overtime;
 
+	public boolean isInvolving(Team team) {
+		return homeTeam.equals(team) || roadTeam.equals(team);
+	}
+
+	public Record getRecordFor(Team team) {
+		if (!isInvolving(team)) {
+			return new Record(0, 0, 0);
+		}
+		if (isTie()) {
+			return new Record(0, 0, 1);
+		}
+		return getWinnerTeam().equals(team) 
+				? new Record(1, 0, 0)
+				: new Record(0, 1, 0);
+	}
+	
+	@Transient
+	public Team getWinnerTeam() {
+		if (isTie()) {
+			return null;
+		}
+		return homeScore > roadScore ? homeTeam : roadTeam;
+	}
+	
+	@Transient
+	public boolean isTie() {
+		return homeScore == roadScore;
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public long getId() {
