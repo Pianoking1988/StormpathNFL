@@ -34,24 +34,38 @@
 						</table>
 					</div>
                     
-                    <div class="table-responsive">          
-						<table class="table">
-						  <thead>
-						    <tr>
-						      <th>#</th>
-						      <th>Logo</th>
-						      <th>Name</th>
-						    </tr>
-						  </thead>
-						  <tbody>
-						    <tr th:each="team : ${teams}">
-						      <td th:text="${team.id}">1</td>
-						      <td><img th:src="@{'images/' + ${team.name} + '.png'}" src="../static/images/Green Bay Packers.png" width="30" height="30"/></td>
-						      <td th:text="${team.name}">Green Bay Packers</td>
-						    </tr>
-						  </tbody>
-						</table>
-					</div>                
+                    <div class="col-xs-6 col-md-3" th:with="conference = ${T(de.heinemann.domain.Conference).AFC}, division = ${T(de.heinemann.domain.Division).EAST}">
+                        <h2 th:text="${conference.name()} + ' ' + ${#strings.capitalize(#strings.toLowerCase(division.name()))}">AFC South</h2>
+		        	    <!--/*/ <th:block th:include="fragments/teamList :: teamList (teams=${teams.getTeamsIn(conference, division)})"/> /*/-->
+		        	</div>
+                    <div class="col-xs-6 col-md-3" th:with="conference = ${T(de.heinemann.domain.Conference).AFC}, division = ${T(de.heinemann.domain.Division).NORTH}">
+                        <h2 th:text="${conference.name()} + ' ' + ${#strings.capitalize(#strings.toLowerCase(division.name()))}">AFC South</h2>
+		        	    <!--/*/ <th:block th:include="fragments/teamList :: teamList (teams=${teams.getTeamsIn(conference, division)})"/> /*/-->
+		        	</div>
+                    <div class="col-xs-6 col-md-3" th:with="conference = ${T(de.heinemann.domain.Conference).AFC}, division = ${T(de.heinemann.domain.Division).SOUTH}">
+                        <h2 th:text="${conference.name()} + ' ' + ${#strings.capitalize(#strings.toLowerCase(division.name()))}">AFC South</h2>
+		        	    <!--/*/ <th:block th:include="fragments/teamList :: teamList (teams=${teams.getTeamsIn(conference, division)})"/> /*/-->
+		        	</div>
+                    <div class="col-xs-6 col-md-3" th:with="conference = ${T(de.heinemann.domain.Conference).AFC}, division = ${T(de.heinemann.domain.Division).WEST}">
+                        <h2 th:text="${conference.name()} + ' ' + ${#strings.capitalize(#strings.toLowerCase(division.name()))}">AFC South</h2>
+		        	    <!--/*/ <th:block th:include="fragments/teamList :: teamList (teams=${teams.getTeamsIn(conference, division)})"/> /*/-->
+		        	</div>
+                    <div class="col-xs-6 col-md-3" th:with="conference = ${T(de.heinemann.domain.Conference).NFC}, division = ${T(de.heinemann.domain.Division).EAST}">
+                        <h2 th:text="${conference.name()} + ' ' + ${#strings.capitalize(#strings.toLowerCase(division.name()))}">AFC South</h2>
+		        	    <!--/*/ <th:block th:include="fragments/teamList :: teamList (teams=${teams.getTeamsIn(conference, division)})"/> /*/-->
+		        	</div>
+                    <div class="col-xs-6 col-md-3" th:with="conference = ${T(de.heinemann.domain.Conference).NFC}, division = ${T(de.heinemann.domain.Division).NORTH}">
+                        <h2 th:text="${conference.name()} + ' ' + ${#strings.capitalize(#strings.toLowerCase(division.name()))}">AFC South</h2>
+		        	    <!--/*/ <th:block th:include="fragments/teamList :: teamList (teams=${teams.getTeamsIn(conference, division)})"/> /*/-->
+		        	</div>
+                    <div class="col-xs-6 col-md-3" th:with="conference = ${T(de.heinemann.domain.Conference).NFC}, division = ${T(de.heinemann.domain.Division).SOUTH}">
+                        <h2 th:text="${conference.name()} + ' ' + ${#strings.capitalize(#strings.toLowerCase(division.name()))}">AFC South</h2>
+		        	    <!--/*/ <th:block th:include="fragments/teamList :: teamList (teams=${teams.getTeamsIn(conference, division)})"/> /*/-->
+		        	</div>
+                    <div class="col-xs-6 col-md-3" th:with="conference = ${T(de.heinemann.domain.Conference).NFC}, division = ${T(de.heinemann.domain.Division).WEST}">
+                        <h2 th:text="${conference.name()} + ' ' + ${#strings.capitalize(#strings.toLowerCase(division.name()))}">AFC South</h2>
+		        	    <!--/*/ <th:block th:include="fragments/teamList :: teamList (teams=${teams.getTeamsIn(conference, division)})"/> /*/-->
+		        	</div>
                 
                 </div>
             </div>

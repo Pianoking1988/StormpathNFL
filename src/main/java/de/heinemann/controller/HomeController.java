@@ -1,7 +1,5 @@
 package de.heinemann.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -15,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.stormpath.sdk.servlet.account.AccountResolver;
 
 import de.heinemann.domain.Matches;
-import de.heinemann.domain.Team;
+import de.heinemann.domain.Teams;
 import de.heinemann.service.HelloService;
 import de.heinemann.service.MatchService;
 import de.heinemann.service.TeamService;
@@ -33,9 +31,9 @@ public class HomeController {
 		
     @RequestMapping("/")
     public String home(HttpServletRequest request, Model model) {
-    	List<Team> teams = teamService.findAll();
+    	Teams teams = teamService.findAll();
         model.addAttribute("teams", teams);
-    	logger.info("Found {} teams", teams.size());
+    	logger.info("Found {} teams", teams.getTeams().size());
     	
     	Matches matches = matchService.findAll();
     	model.addAttribute("matches", matches);
