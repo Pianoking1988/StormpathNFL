@@ -28,6 +28,8 @@
 		<hsqldb.version>2.3.2</hsqldb.version>
 		<flyway.version>4.0.3</flyway.version>
 		<junit.version>4.12</junit.version>
+		<sass.version>1.1.1</sass.version>
+		<minify.version>1.7.6</minify.version>
 	</properties>
 
 	<dependencies>
@@ -85,9 +87,59 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jasig.maven</groupId>
+				<artifactId>sass-maven-plugin</artifactId>
+				<version>${sass.version}</version>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>update-stylesheets</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<resources>
+						<resource>
+							<source>
+								<directory>${project.basedir}/src/main/resources/static/scss</directory>
+							</source>
+							<destination>${project.basedir}/src/main/resources/static/css</destination>
+						</resource>
+					</resources>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.samaxes.maven</groupId>
+				<artifactId>minify-maven-plugin</artifactId>
+				<version>${minify.version}</version>
+				<executions>
+					<execution>
+						<id>default-minify</id>
+						<phase>package</phase>
+						<configuration>
+							<charset>UTF-8</charset>
+							<webappSourceDir>${basedir}/src/main/resources/static</webappSourceDir>
+							<webappTargetDir>${basedir}/src/main/resources/static</webappTargetDir>
+							<cssSourceDir>css</cssSourceDir>
+							<cssSourceFiles>
+								<cssSourceFile>style.css</cssSourceFile>
+							</cssSourceFiles>
+							<cssFinalFile>stormpathNfl.css</cssFinalFile>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

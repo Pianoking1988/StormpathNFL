@@ -6,13 +6,7 @@
         <!--/*/ <th:block th:include="fragments/navbar :: navbar (activeLink='')"/> /*/-->
     
         <div class="container-fluid">
-
-            <div class="row">
-                <div class="col-xs-12">             
-	        	    <!--/*/ <th:block th:include="fragments/matchList :: matchList (matches=${matches})"/> /*/-->
-				</div>
-			</div>
-			
+		
 			<div class="row">                    
                 <div class="col-xs-12 col-sm-6 col-md-3" th:with="conference = ${T(de.heinemann.domain.Conference).AFC}, division = ${T(de.heinemann.domain.Division).EAST}">
                     <h2 th:text="${conference.name()} + ' ' + ${#strings.capitalize(#strings.toLowerCase(division.name()))}">AFC South</h2>
