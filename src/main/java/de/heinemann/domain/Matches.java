@@ -26,7 +26,7 @@ public class Matches {
 	public Record getRecordFor(Team team) {
 		return matches.stream()
 				.map(match -> match.getRecordFor(team))
-				.reduce(new Record(0, 0, 0), Record::add);		
+				.reduce(new Record(), Record::add);		
 	}
 	
 	public Matches getMatchesAgainstConferenceFor(Team team, Conference conference) {
@@ -46,6 +46,13 @@ public class Matches {
 				).collect(Collectors.toList()));
 	}
 
+	public Matches getMatchesInWeek(int week) {
+		return new Matches(
+				matches.stream().filter(
+						match -> match.getWeek() == week
+				).collect(Collectors.toList()));
+	}
+	
 	public List<Match> getMatches() {
 		return matches;
 	}

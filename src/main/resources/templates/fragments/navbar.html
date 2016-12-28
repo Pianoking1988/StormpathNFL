@@ -29,8 +29,9 @@
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav">
 	        <li th:class="${activeLink} == ''           ? active : ''"><a href="/">Home</a></li>
+	        <li th:class="${activeLink} == 'schedule'   ? active : ''"><a href="/schedule">Schedule</a></li>
 	        <li th:class="${activeLink} == 'restricted' ? active : ''"><a href="/restricted">Restricted</a></li>
-	        <li th:class="${activeLink} == 'anyUser' ? active : ''"><a href="/anyUser">Any User</a></li>
+	        <li th:class="${activeLink} == 'anyUser'    ? active : ''"><a href="/anyUser">Any User</a></li>
 	      </ul>
 	
 	      <div th:if="${account}">

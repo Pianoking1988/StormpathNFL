@@ -30,14 +30,14 @@ public class Match {
 
 	public Record getRecordFor(Team team) {
 		if (!isInvolving(team) || !isFinished()) {
-			return new Record(0, 0, 0);
+			return new Record();
 		}
 		if (isTie()) {
-			return new Record(0, 0, 1);
+			return new Record(0, 0, 1, homeScore, roadScore);
 		}
 		return getWinnerTeam().equals(team) 
-				? new Record(1, 0, 0)
-				: new Record(0, 1, 0);
+				? new Record(1, 0, 0, getWinnerScore(), getLoserScore())
+				: new Record(0, 1, 0, getLoserScore(), getWinnerScore());
 	}
 	
 	@Transient
@@ -46,6 +46,32 @@ public class Match {
 			return null;
 		}
 		return homeScore > roadScore ? homeTeam : roadTeam;
+	}
+
+	@Transient
+	public Team getLoserTeam() {
+		if (isTie() || !isFinished()) {
+			return null;
+		}
+		return homeScore < roadScore ? homeTeam : roadTeam;
+	}
+
+	@Transient
+	public int getWinnerScore() {
+		Team winnerTeam = getWinnerTeam();
+		if (winnerTeam == null) {
+			return homeScore;
+		}
+		return winnerTeam.equals(homeTeam) ? homeScore : roadScore;
+	}
+
+	@Transient
+	public int getLoserScore() {
+		Team loserTeam = getLoserTeam();
+		if (loserTeam == null) {
+			return homeScore;
+		}
+		return loserTeam.equals(homeTeam) ? homeScore : roadScore;
 	}
 	
 	@Transient

@@ -19,7 +19,8 @@
 	<h2 th:text="${recordName}">Overall</h2>	
 	<h4 th:with="record = ${recordMatches.getRecordFor(team)}"
 	    th:text="${record.wins} + ' - ' + ${record.losses} + ' - ' + ${record.ties}
-	       + ' (' + ${#numbers.formatDecimal(record.getWinPercentage(), 1, 1)} + '%)'">4 - 2 - 0 (66.6%)</h4>
+	       + ' (' + ${#numbers.formatDecimal(record.getWinPercentage(), 1, 1)} + '%, '
+	       + ${record.score} + ' points to ' + ${record.scoreOpponents} + ' points)'">4 - 2 - 0 (66.6%, 87 points to 67 points)</h4>
 
     <div class="row">
 	  <div class="col-xs-12">

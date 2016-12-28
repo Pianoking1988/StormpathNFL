@@ -5,15 +5,26 @@ public class Record {
 	private int wins = 0;
 	private int losses = 0;
 	private int ties = 0;
+	private int score = 0;
+	private int scoreOpponents = 0;
 	
-	public Record(int wins, int losses, int ties) {
+	public Record() {}
+	
+	public Record(int wins, int losses, int ties, int score, int scoreOpponents) {
 		this.wins = wins;
 		this.losses = losses;
 		this.ties = ties;
+		this.score = score;
+		this.scoreOpponents = scoreOpponents;
 	}
 	
 	public Record add(Record record) {
-		return new Record(wins + record.getWins(), losses + record.getLosses(), ties + record.getTies());
+		return new Record(
+				wins + record.getWins(),
+				losses + record.getLosses(),
+				ties + record.getTies(),
+				score + record.getScore(),
+				scoreOpponents + record.getScoreOpponents());
 	}
 	
 	public double getWinPercentage() {
@@ -37,6 +48,14 @@ public class Record {
 	
 	public int getTies() {
 		return ties;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public int getScoreOpponents() {
+		return scoreOpponents;
 	}	
 	
 }

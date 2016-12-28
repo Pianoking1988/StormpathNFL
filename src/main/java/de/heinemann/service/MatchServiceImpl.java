@@ -15,7 +15,7 @@ public class MatchServiceImpl implements MatchService {
 
 	@Override
 	public Matches findAll() {
-		return new Matches(matchRepository.findAllByOrderByIdAsc());
+		return new Matches(matchRepository.findAllByOrderById());
 	}	
 	
 	public Matches getMatchesInvolving(Team team) {

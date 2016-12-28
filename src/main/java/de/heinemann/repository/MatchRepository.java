@@ -8,6 +8,6 @@ import de.heinemann.domain.Match;
 
 public interface MatchRepository extends JpaRepository<Match, Long> {
 
-	public List<Match> findAllByOrderByIdAsc();
+	public List<Match> findAllByOrderById();
 	
 }
