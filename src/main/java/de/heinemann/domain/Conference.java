@@ -5,7 +5,7 @@ public enum Conference {
 	AFC,
 	NFC;
 	
-	public Conference getOtherConference() {
+	public Conference getComplementaryConference() {
 		return equals(AFC) ? NFC : AFC;
 	}
 	

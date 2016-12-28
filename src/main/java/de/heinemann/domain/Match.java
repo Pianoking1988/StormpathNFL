@@ -29,7 +29,7 @@ public class Match {
 	}
 
 	public Record getRecordFor(Team team) {
-		if (!isInvolving(team)) {
+		if (!isInvolving(team) || !isFinished()) {
 			return new Record(0, 0, 0);
 		}
 		if (isTie()) {
@@ -42,7 +42,7 @@ public class Match {
 	
 	@Transient
 	public Team getWinnerTeam() {
-		if (isTie()) {
+		if (isTie() || !isFinished()) {
 			return null;
 		}
 		return homeScore > roadScore ? homeTeam : roadTeam;
@@ -51,6 +51,13 @@ public class Match {
 	@Transient
 	public boolean isTie() {
 		return homeScore == roadScore;
+	}
+	
+	public Team getOpponentOf(Team team) {
+		if (!isInvolving(team)) {
+			return null;
+		}
+		return homeTeam.equals(team) ? roadTeam : homeTeam;
 	}
 	
 	@Id

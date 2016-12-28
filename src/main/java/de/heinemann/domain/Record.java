@@ -20,7 +20,7 @@ public class Record {
 		if (getTotal() == 0) {
 			return 0.0;
 		}
-		return (wins + 0.5d * ties) / getTotal();
+		return (wins + 0.5d * ties) * 100 / getTotal();
 	}
 	
 	public int getTotal() {

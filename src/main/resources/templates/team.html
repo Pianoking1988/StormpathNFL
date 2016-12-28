@@ -10,23 +10,25 @@
 			<h1>
 			  <img th:src="@{'~/images/' + ${team.name} + '.png'}" src="../static/images/Green Bay Packers.png" width="30" height="30"/>
 			  <span th:text="${team.name}">Green Bay Packers</span>
+			  <span th:text="'(' + ${team.conference.name()} + ' ' + ${#strings.capitalize(#strings.toLowerCase(team.division.name()))} + ')'">(AFC East)</span>
 			</h1>
 			
             <div class="row">
-                <div class="col-xs-12">
-                    <h2>Schedule</h2>             
-	        	    <!--/*/ <th:block th:include="fragments/matchList :: matchList (matches=${matches})"/> /*/-->
+                <div class="col-xs-12 col-sm-6 col-md-4" th:with="recordType = ${T(de.heinemann.domain.RecordType).OVERALL}">
+	        	    <!--/*/ <th:block th:include="fragments/record :: record (team=${team}, recordName='Schedule', recordMatches=${records.getRecordMatches(recordType)})"/> /*/-->
+				</div>
+                <div class="col-xs-12 col-sm-6 col-md-4" th:with="recordType = ${T(de.heinemann.domain.RecordType).CONFERENCE}">
+	        	    <!--/*/ <th:block th:include="fragments/record :: record (team=${team}, recordName=${team.conference.name()} + ' conference', recordMatches=${records.getRecordMatches(recordType)})"/> /*/-->
+				</div>
+                <div class="col-xs-12 col-sm-6 col-md-4" th:with="recordType = ${T(de.heinemann.domain.RecordType).COMPLEMENTARY_CONFERENCE}">
+	        	    <!--/*/ <th:block th:include="fragments/record :: record (team=${team}, recordName=${team.conference.getComplementaryConference().name()} + ' conference', recordMatches=${records.getRecordMatches(recordType)})"/> /*/-->
 				</div>
 			</div>
-			
             <div class="row">
-                <div class="col-xs-12" th:with="record = ${matches.getRecordFor(team)}">
-                	<h2>Record</h2>             
-					<p th:text="${record.wins} + ' - ' + ${record.losses} + ' - ' + ${record.ties}"></p>
-					<p th:text="${record.getWinPercentage()}"></p>
+                <div class="col-xs-12 col-sm-6 col-md-4" th:with="recordType = ${T(de.heinemann.domain.RecordType).DIVISION}">
+	        	    <!--/*/ <th:block th:include="fragments/record :: record (team=${team}, recordName='Division', recordMatches=${records.getRecordMatches(recordType)})"/> /*/-->
 				</div>
-			</div>
-            
+			</div>            
         </div>
     </body>
 </html>

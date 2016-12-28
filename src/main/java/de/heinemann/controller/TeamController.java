@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import de.heinemann.domain.Matches;
+import de.heinemann.domain.Records;
 import de.heinemann.domain.Team;
 import de.heinemann.service.MatchService;
 import de.heinemann.service.TeamService;
@@ -25,10 +26,11 @@ public class TeamController {
     @RequestMapping("/teams/{teamId}")
     public String home(HttpServletRequest request, @PathVariable int teamId, Model model) {
     	Team team = teamService.find(teamId);
-    	Matches teamMatches = matchService.getMatchesInvolving(team);
+    	Matches scheduleMatches = matchService.findAll();
+    	Records records = new Records(team, scheduleMatches);
     	
     	model.addAttribute("team", team);
-    	model.addAttribute("matches", teamMatches);
+    	model.addAttribute("records", records);
     	
         return "team";
     }

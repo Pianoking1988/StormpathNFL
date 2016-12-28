@@ -29,6 +29,23 @@ public class Matches {
 				.reduce(new Record(0, 0, 0), Record::add);		
 	}
 	
+	public Matches getMatchesAgainstConferenceFor(Team team, Conference conference) {
+		return new Matches(
+				matches.stream().filter(
+						match -> match.isInvolving(team)
+								&& match.getOpponentOf(team).getConference().equals(conference)
+				).collect(Collectors.toList()));
+	}
+
+	public Matches getMatchesAgainstDivisionFor(Team team, Conference conference, Division division) {
+		return new Matches(
+				matches.stream().filter(
+						match -> match.isInvolving(team)
+								&& match.getOpponentOf(team).getConference().equals(conference)
+								&& match.getOpponentOf(team).getDivision().equals(division)
+				).collect(Collectors.toList()));
+	}
+
 	public List<Match> getMatches() {
 		return matches;
 	}
